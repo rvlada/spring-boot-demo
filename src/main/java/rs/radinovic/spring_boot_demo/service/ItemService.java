@@ -29,11 +29,12 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public long updateItem(Item item) {
-        return itemRepository.save(item).getId();
+    public Item updateItem(Item item) {
+        return itemRepository.save(item);
     }
 
-    public void deleteItem(Item item) {
+    public void deleteItem(long id) {
+        Item item = findItem(id);
         itemRepository.delete(item);
     }
 }
