@@ -30,6 +30,10 @@ public class ItemService {
     }
 
     public Item updateItem(Item item) {
+        Item oldItem = findItem(item.getId());
+        if (oldItem == null) {
+            throw new IllegalArgumentException("Error, trying to update non-existing item.");
+        }
         return itemRepository.save(item);
     }
 
