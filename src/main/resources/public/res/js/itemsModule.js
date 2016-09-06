@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var itemsController = (function () {
         var urlBase = "api/items";
+        var createItemForm = $("#create-item-form");
         var itemTemplate = function (id, name, description) {
             return "" +
                 "<tr>" +
@@ -25,6 +26,13 @@ $(document).ready(function () {
 
         var init = function () {
             reloadItems();
+            bindForms();
+        };
+        var bindForms = function () {
+            createItemForm.submit(function (e) {
+                e.preventDefault();
+                saveItem();
+            });
         };
         var reloadItems = function () {
             $.get(urlBase, function (data) {
@@ -37,6 +45,29 @@ $(document).ready(function () {
                     console.log("Error while fetching all items.");
                     console.log(data);
                 });
+        };
+        var saveItem = function () {
+            var newItemName = $("#new-item-name");
+            var newItemDescription = $("#new-item-description");
+            var createItemData = JSON.stringify({
+                name: newItemName.val(),
+                description: newItemDescription.val()
+            });
+            $.ajax({
+                type: "POST",
+                url: urlBase,
+                data: createItemData,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    newItemName.val("");
+                    newItemDescription.val("");
+                    reloadItems();
+                },
+                error: function (data) {
+
+                }
+            });
         };
 
         return {
