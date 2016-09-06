@@ -53,10 +53,7 @@ $(document).ready(function () {
                 $.each(data, function (i, item) {
                     itemsTableBody.append(itemTemplate(item.id, item.name, item.description));
                 })
-            })
-                .fail(function (xhr, status, error) {
-                    handleError(xhr, status, error);
-                });
+            });
         };
         var saveItem = function () {
             var newItemName = $("#new-item-name");
@@ -75,16 +72,8 @@ $(document).ready(function () {
                     newItemName.val("");
                     newItemDescription.val("");
                     reloadItems();
-                },
-                error: function (data) {
-                    handleError(data);
                 }
             });
-        };
-        var handleError = function (xhr, status, error) {
-            var message = "status: " + status + ", responseText: " + xhr.responseText + ", error: " + error;
-            $("#errorMessage").text(message);
-            $("#errorModal").modal('show');
         };
         return {
             init: init
