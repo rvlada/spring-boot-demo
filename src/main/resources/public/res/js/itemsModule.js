@@ -1,6 +1,6 @@
 $(document).ready(function () {
     var itemsController = (function () {
-        var urlBase = "https://peaceful-taiga-63635.herokuapp.com/api/items";
+        var urlBase = "api/items";
         var itemTemplate = function (id, name, description) {
             return "" +
                 "<tr>" +
