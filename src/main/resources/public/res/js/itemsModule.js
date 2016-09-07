@@ -60,6 +60,8 @@ $(document).ready(function () {
                     selectedItemId = item.id;
                     switch(action) {
                         case 'view':
+                            $("#item-name-view").text(item.name);
+                            $("#item-description-view").text(item.description);
                             $("#viewItemModal").modal('show');
                             break;
                         case 'update':
