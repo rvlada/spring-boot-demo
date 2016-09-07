@@ -3,6 +3,7 @@ $(document).ready(function () {
         var urlBase = "api/items";
         var itemsTableBody = $("#items-table-body");
         var createItemForm = $("#create-item-form");
+        var selectedItemId;
         var itemTemplate = function (id, name, description) {
             return "" +
                 "<tr>" +
@@ -37,14 +38,38 @@ $(document).ready(function () {
             });
         };
         var bindButtons = function () {
-            itemsTableBody.on('click', '.view-item-btn', function (e) {
-                $("#viewItemModal").modal('show');
+            itemsTableBody.on('click', '.view-item-btn', function () {
+                selectItem($(this).data('item-id'), 'view');
             });
-            itemsTableBody.on('click', '.update-item-btn', function (e) {
-                $("#updateItemModal").modal('show');
+            itemsTableBody.on('click', '.update-item-btn', function () {
+                selectItem($(this).data('item-id'), 'update');
             });
-            itemsTableBody.on('click', '.delete-item-btn', function (e) {
-                $("#deleteItemModal").modal('show');
+            itemsTableBody.on('click', '.delete-item-btn', function () {
+                selectItem($(this).data('item-id'), 'delete');
+            });
+
+            $("#confirm-item-deletion").click(function () {
+                $("#deleteItemModal").modal('hide');
+                deleteItem(selectedItemId);
+            });
+        };
+        var selectItem = function (itemId, action) {
+            var apiUrl = urlBase + "/" + itemId;
+            $.get(apiUrl, function (item) {
+                if (item) {
+                    selectedItemId = item.id;
+                    switch(action) {
+                        case 'view':
+                            $("#viewItemModal").modal('show');
+                            break;
+                        case 'update':
+                            $("#updateItemModal").modal('show');
+                            break;
+                        case 'delete':
+                            $("#deleteItemModal").modal('show');
+                            break;
+                    }
+                }
             });
         };
         var reloadItems = function () {
