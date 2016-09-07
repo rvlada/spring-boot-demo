@@ -63,7 +63,7 @@ $(document).ready(function () {
             $.get(apiUrl, function (item) {
                 if (item) {
                     selectedItemId = item.id;
-                    switch(action) {
+                    switch (action) {
                         case 'view':
                             $("#item-name-view").text(item.name);
                             $("#item-description-view").text(item.description);
