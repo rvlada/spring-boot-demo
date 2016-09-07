@@ -66,6 +66,7 @@ $(document).ready(function () {
                             $("#updateItemModal").modal('show');
                             break;
                         case 'delete':
+                            $("#delete-item-name").text(item.name);
                             $("#deleteItemModal").modal('show');
                             break;
                     }
@@ -100,6 +101,17 @@ $(document).ready(function () {
                 }
             });
         };
+        var deleteItem = function (itemId) {
+            var apiUrl = urlBase + "/" + itemId;
+            $.ajax({
+                type: "DELETE",
+                url: apiUrl,
+                success: function () {
+                    selectedItemId = null;
+                    reloadItems();
+                }
+            });
+        }
         return {
             init: init
         }
