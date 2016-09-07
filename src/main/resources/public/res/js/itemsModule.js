@@ -4,7 +4,7 @@ $(document).ready(function () {
         var itemsTableBody = $("#items-table-body");
         var createItemForm = $("#create-item-form");
         var selectedItemId;
-        var itemTemplate = function (id, name, description) {
+        var itemTemplate = function (id, name) {
             return "" +
                 "<tr>" +
                 "   <td>" + name + "</td>" +
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 data: createItemData,
                 dataType: "json",
                 contentType: "application/json; charset=utf-8",
-                success: function (data) {
+                success: function () {
                     newItemName.val("");
                     newItemDescription.val("");
                     reloadItems();
@@ -121,7 +121,7 @@ $(document).ready(function () {
                 }
             });
         };
-        var updateItem = function (itemId, itemName, itemDescription) {
+        var updateItem = function (itemId) {
             var apiUrl = urlBase + "/" + itemId;
             var newItemName = $("#item-name-update");
             var newItemDescription = $("#item-description-update");
