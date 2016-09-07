@@ -37,7 +37,8 @@ $(document).ready(function () {
                 saveItem();
             });
 
-            $("#update-item-form").submit(function () {
+            $("#update-item-form").submit(function (e) {
+                e.preventDefault();
                 $("#updateItemModal").modal('hide');
                 updateItem(selectedItemId);
             });
