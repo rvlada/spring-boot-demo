@@ -36,6 +36,11 @@ $(document).ready(function () {
                 e.preventDefault();
                 saveItem();
             });
+
+            $("#update-item-form").submit(function () {
+                $("#updateItemModal").modal('hide');
+                updateItem(selectedItemId);
+            });
         };
         var bindButtons = function () {
             itemsTableBody.on('click', '.view-item-btn', function () {
@@ -65,6 +70,8 @@ $(document).ready(function () {
                             $("#viewItemModal").modal('show');
                             break;
                         case 'update':
+                            $("#item-name-update").val(item.name);
+                            $("#item-description-update").val(item.description);
                             $("#updateItemModal").modal('show');
                             break;
                         case 'delete':
@@ -113,7 +120,27 @@ $(document).ready(function () {
                     reloadItems();
                 }
             });
-        }
+        };
+        var updateItem = function (itemId, itemName, itemDescription) {
+            var apiUrl = urlBase + "/" + itemId;
+            var newItemName = $("#item-name-update");
+            var newItemDescription = $("#item-description-update");
+            var updateItemData = JSON.stringify({
+                name: newItemName.val(),
+                description: newItemDescription.val()
+            });
+            $.ajax({
+                type: "PUT",
+                data: updateItemData,
+                url: apiUrl,
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    selectedItemId = null;
+                    reloadItems();
+                }
+            });
+        };
         return {
             init: init
         }
