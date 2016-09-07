@@ -87,7 +87,10 @@ $(document).ready(function () {
                 itemsTableBody.empty();
                 $.each(data, function (i, item) {
                     itemsTableBody.append(itemTemplate(item.id, item.name, item.description));
-                })
+                });
+                if (!data.length) {
+                    itemsTableBody.append('<tr><td>No items</td><td></td><td></td><td></td></tr>');
+                }
             });
         };
         var saveItem = function () {
