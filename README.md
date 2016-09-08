@@ -1,6 +1,8 @@
 # spring-boot-demo
 Simple demo for Spring Boot deployable to Heroku
 
+[![Build Status](https://travis-ci.org/rvlada/spring-boot-demo.svg?branch=master)](https://travis-ci.org/rvlada/spring-boot-demo)
+
 This is a simple Spring Boot application which uses Spring, Postgres/HSQLDB, Rest, jQuery and Bootstrap. You can see it live here (it's deployed to free dyno on Heroku, and it might be slow at start):
 
 [https://peaceful-taiga-63635.herokuapp.com/](https://peaceful-taiga-63635.herokuapp.com/)
