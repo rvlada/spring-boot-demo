@@ -13,3 +13,5 @@ If you want to use in-memory database, you can build application using 'in-memor
 ## Running the application locally
 The easiest way to get this app running is to build it using `mvn clean install -Pin-memory-db` (which starts the app with in memory HSQLDB), and then running it by `java -jar target/spring-boot-demo-1.0-SNAPSHOT.jar`.
 Spring Boot wraps Tomcat inside, so the app is deployed to `locahost:8080`.
+
+*Hibernate is configured to drop and re-create tables on each deploy (which destroys all the data). If you wish to change it, you can modify `spring.jpa.hibernate.ddl-auto` property in application.properties file.*
