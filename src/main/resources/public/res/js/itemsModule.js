@@ -106,23 +106,21 @@ $(document).ready(function () {
                 url: urlBase,
                 data: createItemData,
                 dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    newItemName.val("");
-                    newItemDescription.val("");
-                    reloadItems();
-                }
+                contentType: "application/json; charset=utf-8"
+            }).done(function () {
+                newItemName.val("");
+                newItemDescription.val("");
+                reloadItems();
             });
         };
         var deleteItem = function (itemId) {
             var apiUrl = urlBase + "/" + itemId;
             $.ajax({
                 type: "DELETE",
-                url: apiUrl,
-                success: function () {
-                    selectedItemId = null;
-                    reloadItems();
-                }
+                url: apiUrl
+            }).done(function () {
+                selectedItemId = null;
+                reloadItems();
             });
         };
         var updateItem = function (itemId) {
@@ -138,11 +136,10 @@ $(document).ready(function () {
                 data: updateItemData,
                 url: apiUrl,
                 dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-                    selectedItemId = null;
-                    reloadItems();
-                }
+                contentType: "application/json; charset=utf-8"
+            }).done(function () {
+                selectedItemId = null;
+                reloadItems();
             });
         };
         return {
