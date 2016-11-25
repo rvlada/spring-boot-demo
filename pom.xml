@@ -82,11 +82,11 @@
                                     <goal>run</goal>
                                 </goals>
                                 <configuration>
-                                    <tasks>
+                                    <target>
                                         <delete file="${project.build.outputDirectory}/application.properties"/>
                                         <copy file="${project.build.outputDirectory}/application.in-memory-db.properties"
                                               toFile="${project.build.outputDirectory}/application.properties"/>
-                                    </tasks>
+                                    </target>
                                 </configuration>
                             </execution>
                         </executions>
