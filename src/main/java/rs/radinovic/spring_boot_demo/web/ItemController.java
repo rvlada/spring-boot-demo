@@ -27,7 +27,7 @@ public class ItemController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Item findItem(@PathVariable("id") long id) {
+    public Item findItem(@PathVariable long id) {
         return itemService.findItem(id);
     }
 
@@ -39,13 +39,13 @@ public class ItemController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public Item updateItem(@PathVariable("id") long id, @RequestBody @Valid Item item) {
+    public Item updateItem(@PathVariable long id, @RequestBody @Valid Item item) {
         item.setId(id);
         return itemService.updateItem(item);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void deleteItem(@PathVariable("id") long id) {
+    public void deleteItem(@PathVariable long id) {
         itemService.deleteItem(id);
     }
 }
